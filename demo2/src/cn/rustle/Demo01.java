@@ -30,5 +30,11 @@ public class Demo01 extends App{
         g.setColor(new Color(255,0,0));
         g.setFont( new Font("新宋体",Font.BOLD,30));
         g.drawString("DEMO END",150,200);
+
+        //fillOval绘制小球
+        g.fillOval(30,50,50,50);
+
+        g.setColor(new Color(200,200,50));
+        g.fillOval(80,80,50,50);
     }
 }
