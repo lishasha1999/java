@@ -46,14 +46,14 @@ public class Demo03 extends App {
         /*
          * +=包含了强制类型转换，小数被截取为整数，会丧失精度
          */
-        x+=offsetX;
-        y+=offsetY;
+        x += offsetX;
+        y += offsetY;
         g.setColor(color);
-        g.fillOval((int)x,(int)y,d,d);
+        g.fillOval((int) x, (int) y, d, d);
 
-        x1+=offsetX;
-        y1+=offsetY;
+        x1 += offsetX;
+        y1 += offsetY;
         g.setColor(color1);
-        g.fillOval((int)x1,(int)y1,d1,d1);
+        g.fillOval((int) x1, (int) y1, d1, d1);
     }
 }
