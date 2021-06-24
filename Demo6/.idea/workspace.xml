@@ -36,7 +36,7 @@
       <recent name="D:\java.git\trunk\Demo6" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BallDemo (1)">
+  <component name="RunManager" selected="Application.BallDemo (2)">
     <configuration name="BallDemo (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.rustle.day02.BallDemo" />
       <module name="Demo6" />
@@ -50,12 +50,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BallDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.day01.BallDemo" />
+    <configuration name="BallDemo (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.day03.BallDemo" />
       <module name="Demo6" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.rustle.day01.*" />
+          <option name="PATTERN" value="cn.rustle.day03.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -63,8 +63,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.day01.Demo01" />
+    <configuration name="BallDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.day01.BallDemo" />
       <module name="Demo6" />
       <extension name="coverage">
         <pattern>
@@ -102,24 +102,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BallDemo (2)" />
         <item itemvalue="Application.BallDemo (1)" />
         <item itemvalue="Application.GirlFriendDemo (1)" />
         <item itemvalue="Application.GirlFriendDemo" />
         <item itemvalue="Application.BallDemo" />
-        <item itemvalue="Application.Demo01" />
       </list>
     </recent_temporary>
   </component>
@@ -132,6 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624152408561</updated>
       <workItem from="1624152409814" duration="9729000" />
+      <workItem from="1624541819502" duration="442000" />
     </task>
     <servers />
   </component>
