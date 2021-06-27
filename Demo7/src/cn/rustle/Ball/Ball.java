@@ -4,15 +4,15 @@ import java.awt.*;
 
 public class Ball {
     int d;
-    int x,y;
+    double x,y;
     int r,g,b;
     Color color;
     double offsetX,offsetY;
 
     public Ball(){
         d=(int)(Math.random()*(60-10)+10);
-        x=(int)(Math.random()*(800-d));
-        y=(int)(Math.random()*(600-d));
+        x=(Math.random()*(800-d));
+        y=(Math.random()*(600-d));
         r=(int)(Math.random()*256);
         g=(int)(Math.random()*256);
         b=(int)(Math.random()*256);
@@ -49,7 +49,7 @@ public class Ball {
 
     public void paint(Graphics2D g){
         g.setColor(color);
-        g.fillOval(x,y,d,d);
+        g.fillOval((int)x,(int) y,d,d);
     }
 
     public boolean eat(Ball ball){
@@ -77,12 +77,13 @@ public class Ball {
         //如果发生了“吃”，就将两球合并
         if(eaten){
             //计算吃掉后的圆面积
-            double R=D/2;
-            double r=d/2;
-            double area=Math.PI*R*R+Math.PI*r*r;
-            //计算半径
-            double rx =Math.sqrt(area/Math.PI);
-            this.d=(int) rx/2;
+            //计算吃掉后的圆面积=大圆的面积+小圆的面积
+            double R = D/2, r = d/2;
+            double area = Math.PI*R*R +Math.PI*r*r;
+            //计算新圆的半径
+            double rx  =Math.sqrt(area/Math.PI);
+            //替换当前圆的直径
+            this.d = (int)(rx*2);
         }
         return eaten;
     }
