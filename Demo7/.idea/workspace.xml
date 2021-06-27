@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce03fbbe-c576-4719-a625-d8a63dc4c06e" name="Default Changelist" comment="" />
+    <list default="true" id="87ebb0ec-17f2-4c93-91e1-1d6cb3f5d211" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,10 +22,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/cn/rustle/Demo07.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProjectId" id="1tYT561TY8MAsJR3G8PFYyNTTrz" />
+  <component name="ProjectId" id="1uVb6KAnanKNVD2jenPc37c6sj1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,15 +32,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/tedu_utils1.0.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Demo10">
-    <configuration name="Demo06" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.Demo06" />
-      <module name="demo3" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\java.git\trunk\Demo7" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.BallDemo">
+    <configuration name="BallDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.Ball.BallDemo" />
+      <module name="Demo7" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.rustle.*" />
+          <option name="PATTERN" value="cn.rustle.Ball.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -51,12 +56,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo07" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.Demo07" />
-      <module name="demo3" />
+    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.day.Demo01" />
+      <module name="Demo7" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.rustle.*" />
+          <option name="PATTERN" value="cn.rustle.day.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -64,12 +69,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo08" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.Demo08" />
-      <module name="demo3" />
+    <configuration name="test01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.day.test01" />
+      <module name="Demo7" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.rustle.*" />
+          <option name="PATTERN" value="cn.rustle.day.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -77,12 +82,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo09" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.Demo09" />
-      <module name="demo3" />
+    <configuration name="test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.rustle.day.test02" />
+      <module name="Demo7" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.rustle.*" />
+          <option name="PATTERN" value="cn.rustle.day.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -90,41 +95,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo10" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.rustle.Demo10" />
-      <module name="demo3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.rustle.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Demo10" />
-        <item itemvalue="Application.Demo09" />
-        <item itemvalue="Application.Demo08" />
-        <item itemvalue="Application.Demo07" />
-        <item itemvalue="Application.Demo06" />
+        <item itemvalue="Application.BallDemo" />
+        <item itemvalue="Application.Demo01" />
+        <item itemvalue="Application.test02" />
+        <item itemvalue="Application.test01" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ce03fbbe-c576-4719-a625-d8a63dc4c06e" name="Default Changelist" comment="" />
-      <created>1622944839788</created>
+      <changelist id="87ebb0ec-17f2-4c93-91e1-1d6cb3f5d211" name="Default Changelist" comment="" />
+      <created>1624753528411</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1622944839788</updated>
-      <workItem from="1622944841089" duration="10242000" />
-      <workItem from="1623154258085" duration="6328000" />
-      <workItem from="1623326980724" duration="96000" />
-      <workItem from="1624753360343" duration="104000" />
+      <updated>1624753528411</updated>
+      <workItem from="1624753529589" duration="2821000" />
+      <workItem from="1624775237528" duration="7346000" />
     </task>
     <servers />
   </component>
