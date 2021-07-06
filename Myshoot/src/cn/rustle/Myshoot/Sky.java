@@ -1,4 +1,4 @@
-package cn.rustle.Myshoot;
+package cn.rustle.myshoot;
 
 import javax.swing.*;
 import java.awt.*;
