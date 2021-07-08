@@ -16,6 +16,7 @@ public class World extends JPanel {
     private Bigplane[] bas;
     private Bee[] bs;
     private Bullet[] bts;
+
     /** 构造方法 */
     public World(){
         s = new Sky(400,700,0,0,1,-700);
@@ -85,15 +86,15 @@ public class World extends JPanel {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame(); //3.
+        JFrame frame = new JFrame();
         World world = new World();
         frame.add(world);
         frame.setSize(400, 700);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true); //1)设置窗口可见  2)尽快调用paint()方法
+        frame.setVisible(true);
 
-        world.action(); //启动程序的执行
+        world.action();
     }
 }
 

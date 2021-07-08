@@ -1,27 +1,41 @@
 package cn.rustle.myshoot;
+
 import javax.swing.ImageIcon;
 
-/** 小蜜蜂 */
+/**
+ * 小蜜蜂
+ *
+ * @author Administrator
+ */
+
 public class Bee extends FlyingObject {
-    private double speed; //移动速度
-    private double direction; //移动方向
-    /** 构造方法 */
-    public Bee(double width,double height,double x,double y,double speed,double direction){
-        super(width,height,x,y);
+    private double speed;
+    private double direction;
+
+    /**
+     * 构造方法
+     */
+    public Bee(double width, double height, double x, double y, double speed, double direction) {
+        super(width, height, x, y);
         this.speed = speed;
         this.direction = direction;
-        image = new ImageIcon("images/bee0.png");
+        image = Images.bee[0];
+        width= image.getIconWidth();
+        height= image.getIconHeight();
     }
 
-    /** 重写move()移动 */
-    public void move(){
-        y+=speed; //y+(向下)
-        x+=direction; //direction为1表示向右，direction为-1表示向左
-        if(x<=0){          //若x<=0，表示到最左边了
-            direction = 1; //则direction为1，即向右
+    /**
+     * 重写move()移动
+     */
+    @Override
+    public void move() {
+        y += speed;
+        x += direction;
+        if (x <= 0) {
+            direction = 1;
         }
-        if (x>=400-width) { //若x>=窗口宽-小蜜蜂宽，表示到最右边了
-            direction = -1; //则direction为-1，即向左
+        if (x >= 400 - width) {
+            direction = -1;
         }
     }
 }

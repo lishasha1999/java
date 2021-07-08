@@ -10,7 +10,9 @@ public class Airplane extends FlyingObject {
     public Airplane(double width,double height,double x,double y,double speed){
         super(width,height,x,y);
         this.speed = speed;
-        image = new ImageIcon("images/airplane0.png");
+        image = Images.airplane[0];
+        width= image.getIconWidth();
+        height= image.getIconHeight();
     }
 
     /** 重写move()移动 */
