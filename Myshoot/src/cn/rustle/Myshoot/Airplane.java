@@ -1,24 +1,27 @@
 package cn.rustle.myshoot;
 
 import javax.swing.ImageIcon;
+import java.util.Random;
+
 /** 小敌机
  * @author Administrator*/
-public class Airplane extends FlyingObject {
-    private double speed;
-    //移动速度
+public class Airplane extends Plane {
+
+
+    public Airplane(){
+        super(Images.airplane[0],Images.airplane,Images.bom);
+        step=Math.random()*4+1.5;
+    }
     /** 构造方法 */
-    public Airplane(double width,double height,double x,double y,double speed){
-        super(width,height,x,y);
-        this.speed = speed;
-        image = Images.airplane[0];
-        width= image.getIconWidth();
-        height= image.getIconHeight();
+    public Airplane(double x,double y,double step){
+        super(x,y,Images.airplane[0],Images.airplane,Images.bom);
+        this.step = step;
     }
 
     /** 重写move()移动 */
     @Override
     public void move(){
-        y+=speed;
+        y+=step;
         //y+(向下)
     }
 }

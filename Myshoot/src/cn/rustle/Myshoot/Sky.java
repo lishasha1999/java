@@ -7,34 +7,29 @@ import java.awt.*;
  * @author Administrator
  */
 public class Sky extends FlyingObject {
-    double speed;
-    double y1;
+    private double y0;
 
-
-    Sky(double width, double height, double x, double y, double speed, double y1) {
-        super(width, height, x, y);
-        this.speed = speed;
-        this.y1 = y1;
-        image = Images.sky;
-        width= image.getIconWidth();
-        height= image.getIconHeight();
+    public Sky(){
+        super(0,0,Images.sky,null,null);
+        step=0.8;
+        y0=-height;
     }
 
     @Override
-    void move() {
-        y += speed;
-        y1 += speed;
+    public void move() {
+        y += step;
+        y0 += step;
         if (y >= 700) {
             y = -700;
         }
-        if (y1 >= 700) {
-            y1 = -700;
+        if (y0 >= 700) {
+            y0 = -700;
         }
     }
 
     @Override
-    void paintObject(Graphics g) {
+    public void paintObject(Graphics g) {
         super.paintObject(g);
-        image.paintIcon(null, g, (int) x, (int) y1);
+        image.paintIcon(null, g, (int) x, (int) y0);
     }
 }

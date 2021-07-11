@@ -5,18 +5,20 @@ import javax.swing.ImageIcon;
 public class Hero extends FlyingObject {
     private int fire;
     /** 构造方法 */
-    public Hero(double width,double height,double x,double y,int fire){
-        super(width,height,x,y);
-        this.fire = fire;
-        image = Images.hero[0];
-        width= image.getIconWidth();
-        height= image.getIconHeight();
+    public Hero(double x,double y){
+        ///super(width,height,x,y);
+        super(x,y,Images.hero[0],Images.hero,Images.bom);
     }
 
     /** 重写move()移动 */
     @Override
     public void move(){
         //英雄机的移动，后期单独讲解
+    }
+
+    public void move(int x,int y) {
+        this.x=x;
+        this.y=y;
     }
 }
 
