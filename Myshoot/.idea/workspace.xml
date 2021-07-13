@@ -50,7 +50,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -98,6 +98,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.World" />
@@ -137,7 +148,11 @@
       <workItem from="1625975830532" duration="149000" />
       <workItem from="1625983339283" duration="609000" />
       <workItem from="1625983973371" duration="6166000" />
-      <workItem from="1626175182939" duration="491000" />
+      <workItem from="1626175182939" duration="3993000" />
+      <workItem from="1626183268059" duration="470000" />
+      <workItem from="1626183849969" duration="264000" />
+      <workItem from="1626184136883" duration="204000" />
+      <workItem from="1626184361546" duration="1526000" />
     </task>
     <servers />
   </component>

@@ -17,8 +17,12 @@ public class Hero extends FlyingObject {
     }
 
     public void move(int x,int y) {
-        this.x=x;
-        this.y=y;
+        this.x=x-width/2;
+        this.y=y-height/2;
+    }
+
+    public void fire(){
+
     }
 }
 

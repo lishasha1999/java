@@ -3,10 +3,12 @@ package cn.rustle.myshoot;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.event.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.StreamSupport;
 
 /**
  * 整个游戏窗口
@@ -55,6 +57,16 @@ public class World extends JPanel {
         LoopTask task = new LoopTask();
         //3)将定时任务添加到定时器中
         timer.schedule(task, 1000, 10);
+
+        this.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int x=e.getX();
+                int y=e.getY();
+                h.move(x,y);
+            }
+        });
+
     }
 
     public class LoopTask extends TimerTask { //定时任务类
@@ -103,13 +115,13 @@ public class World extends JPanel {
             switch (n) {
                 case 7:
                 case 8:
-                    plane =new Bigplane();
+                    plane = new Bigplane();
                     break;
                 case 9:
-                    plane=new Bee();
+                    plane = new Bee();
                     break;
                 default:
-                    plane=new Airplane();
+                    plane = new Airplane();
             }
             planes = Arrays.copyOf(planes, planes.length + 1);
             planes[planes.length - 1] = plane;
@@ -124,7 +136,7 @@ public class World extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
+
         world.action();
     }
 }
