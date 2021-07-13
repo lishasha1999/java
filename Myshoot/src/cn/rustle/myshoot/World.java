@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,11 +64,7 @@ public class World extends JPanel {
         @Override
         public void run() { //定时干的事(每10毫秒自动执行)
             index++;
-            if (index % 10 == 0) {
-                Airplane air = new Airplane();
-                planes = Arrays.copyOf(planes, planes.length + 1);
-                planes[planes.length - 1] = air;
-            }
+            creatPlane();
             s.move(); //天空动
             for (int i = 0; i < planes.length; i++) {
                 planes[i].move();
@@ -95,6 +92,30 @@ public class World extends JPanel {
         }
     }
 
+    /**
+     * 绘制飞行物
+     */
+    public void creatPlane() {
+        Plane plane;
+        if (index % 16 == 0) {
+            Random random = new Random();
+            int n = random.nextInt(10);
+            switch (n) {
+                case 7:
+                case 8:
+                    plane =new Bigplane();
+                    break;
+                case 9:
+                    plane=new Bee();
+                    break;
+                default:
+                    plane=new Airplane();
+            }
+            planes = Arrays.copyOf(planes, planes.length + 1);
+            planes[planes.length - 1] = plane;
+        }
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         World world = new World();
@@ -103,7 +124,7 @@ public class World extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
+        
         world.action();
     }
 }

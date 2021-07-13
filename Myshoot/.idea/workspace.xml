@@ -3,6 +3,11 @@
   <component name="AnalysisUIOptions">
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Myshoot:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2d176a3b-e55c-4b34-8899-9db074f4df1c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +46,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/cn/rustle/Myshoot" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -128,7 +136,8 @@
       <workItem from="1625968123949" duration="5417000" />
       <workItem from="1625975830532" duration="149000" />
       <workItem from="1625983339283" duration="609000" />
-      <workItem from="1625983973371" duration="839000" />
+      <workItem from="1625983973371" duration="6166000" />
+      <workItem from="1626175182939" duration="491000" />
     </task>
     <servers />
   </component>
