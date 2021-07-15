@@ -16,6 +16,10 @@ public class Bullet extends FlyingObject {
         y-=step;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 
 

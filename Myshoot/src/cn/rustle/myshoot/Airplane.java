@@ -24,6 +24,7 @@ public class Airplane extends Plane {
         y+=step;
         //y+(向下)
     }
+
 }
 
 

@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
  *
  * @author Administrator
  */
-public class World extends JPanel {
+public class World extends JPanel{
     /**
      * 如下为窗口中所显示的对象
      */
@@ -42,9 +42,8 @@ public class World extends JPanel {
         planes[3] = new Bigplane();
         planes[4] = new Bee();
         planes[5] = new Bee();
-        bts = new Bullet[2];
-        bts[0] = new Bullet(200, 400);
-        bts[1] = new Bullet(200, 600);
+        bts = new Bullet[0];
+
     }
 
     /**
@@ -66,7 +65,6 @@ public class World extends JPanel {
                 h.move(x,y);
             }
         });
-
     }
 
     public class LoopTask extends TimerTask { //定时任务类
@@ -76,6 +74,7 @@ public class World extends JPanel {
         @Override
         public void run() { //定时干的事(每10毫秒自动执行)
             index++;
+            fireAction();
             creatPlane();
             s.move(); //天空动
             for (int i = 0; i < planes.length; i++) {
@@ -84,6 +83,7 @@ public class World extends JPanel {
             for (int i = 0; i < bts.length; i++) { //遍历所有子弹
                 bts[i].move(); //子弹动
             }
+            hitDetection();
             repaint(); //重新调用paint()方法
         }
     }
@@ -126,7 +126,46 @@ public class World extends JPanel {
             planes = Arrays.copyOf(planes, planes.length + 1);
             planes[planes.length - 1] = plane;
         }
+        FlyingObject[] planeArr=new FlyingObject[planes.length];
+        int n=0;
+        for(int i=0;i<planes.length;i++){
+            if (planes[i].y<700){
+                planeArr[n++]=planes[i];
+            }
+        }
+        planes=Arrays.copyOf(planeArr,n);
     }
+
+    public void fireAction(){
+        int n=0;
+        if(index%15==0){
+            bts=Arrays.copyOf(bts,bts.length+1);
+            bts[bts.length-1]=h.fire();
+            Bullet[] bt=new Bullet[bts.length];
+            for(int i=0;i< bts.length;i++){
+                if(bts[i].y>0){
+                    bt[n++]=bts[i];
+                }
+            }
+            bts=Arrays.copyOf(bt,n);
+        }
+    }
+
+    /**
+     * 碰撞检测
+     */
+    public void hitDetection(){
+        for (int i = 0; i < bts.length; i++) {
+            Bullet bullet=bts[i];
+            for (int j = 0; j < planes.length; j++) {
+                FlyingObject plane=planes[j];
+                if(plane.duang(bullet)){
+                    System.out.println("子弹"+i+"打到飞机"+j);
+                }
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();

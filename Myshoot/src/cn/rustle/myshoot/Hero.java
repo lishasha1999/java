@@ -1,5 +1,7 @@
 package cn.rustle.myshoot;
 import javax.swing.ImageIcon;
+import java.util.Arrays;
+
 /** 英雄机
  * @author Administrator*/
 public class Hero extends FlyingObject {
@@ -12,8 +14,8 @@ public class Hero extends FlyingObject {
 
     /** 重写move()移动 */
     @Override
-    public void move(){
-        //英雄机的移动，后期单独讲解
+    public void move() {
+
     }
 
     public void move(int x,int y) {
@@ -21,8 +23,30 @@ public class Hero extends FlyingObject {
         this.y=y-height/2;
     }
 
-    public void fire(){
+    /** 开火方法
+     * 英雄机发射子弹
+     */
+    public Bullet fire(){
+        double x=this.x+width/2-5;
+        double y =this.y-15;
+        Bullet bullet=new Bullet(x,y);
+        return bullet;
+    }
 
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "width=" + width +
+                ", height=" + height +
+                ", x=" + x +
+                ", y=" + y +
+                ", step=" + step +
+                ", image=" + image +
+                ", images=" + Arrays.toString(images) +
+                ", bom=" + Arrays.toString(bom) +
+                ", index=" + index +
+                ", fire=" + fire +
+                '}';
     }
 }
 
