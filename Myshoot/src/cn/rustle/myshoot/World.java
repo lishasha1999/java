@@ -2,29 +2,24 @@ package cn.rustle.myshoot;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.stream.StreamSupport;
 
 /**
  * 整个游戏窗口
  *
  * @author Administrator
  */
-public class World extends JPanel{
+public class World extends JPanel {
     /**
      * 如下为窗口中所显示的对象
      */
     private Sky s;
     private Hero h;
-//    private Airplane[] as;
-//    private Bigplane[] bas;
-//    private Bee[] bs;
-
     private Bullet[] bts;
     private FlyingObject[] planes;
     private int index = 0;
@@ -60,9 +55,9 @@ public class World extends JPanel{
         this.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                int x=e.getX();
-                int y=e.getY();
-                h.move(x,y);
+                int x = e.getX();
+                int y = e.getY();
+                h.move(x, y);
             }
         });
     }
@@ -77,11 +72,15 @@ public class World extends JPanel{
             fireAction();
             creatPlane();
             s.move(); //天空动
-            for (int i = 0; i < planes.length; i++) {
-                planes[i].move();
+            for (FlyingObject plane : planes) {
+                if (plane.isLiving()) {
+                    plane.move();
+                }
             }
-            for (int i = 0; i < bts.length; i++) { //遍历所有子弹
-                bts[i].move(); //子弹动
+            for (Bullet bt : bts) { //遍历所有子弹
+                if (bt.isLiving()) {
+                    bt.move(); //子弹动
+                }
             }
             hitDetection();
             repaint(); //重新调用paint()方法
@@ -95,12 +94,12 @@ public class World extends JPanel{
     public void paint(Graphics g) {
         s.paintObject(g);
         h.paintObject(g);
-        for (int i = 0; i < planes.length; i++) {
-            planes[i].paintObject(g);
+        for (FlyingObject plane : planes) {
+            plane.paintObject(g);
         }
 
-        for (int i = 0; i < bts.length; i++) {
-            bts[i].paintObject(g);
+        for (Bullet bt : bts) {
+            bt.paintObject(g);
         }
     }
 
@@ -126,41 +125,30 @@ public class World extends JPanel{
             planes = Arrays.copyOf(planes, planes.length + 1);
             planes[planes.length - 1] = plane;
         }
-        FlyingObject[] planeArr=new FlyingObject[planes.length];
-        int n=0;
-        for(int i=0;i<planes.length;i++){
-            if (planes[i].y<700){
-                planeArr[n++]=planes[i];
-            }
-        }
-        planes=Arrays.copyOf(planeArr,n);
     }
 
-    public void fireAction(){
-        int n=0;
-        if(index%15==0){
-            bts=Arrays.copyOf(bts,bts.length+1);
-            bts[bts.length-1]=h.fire();
-            Bullet[] bt=new Bullet[bts.length];
-            for(int i=0;i< bts.length;i++){
-                if(bts[i].y>0){
-                    bt[n++]=bts[i];
-                }
-            }
-            bts=Arrays.copyOf(bt,n);
+    public void fireAction() {
+        if (index % 15 == 0) {
+            bts = Arrays.copyOf(bts, bts.length + 1);
+            bts[bts.length - 1] = h.fire();
         }
     }
 
     /**
      * 碰撞检测
      */
-    public void hitDetection(){
-        for (int i = 0; i < bts.length; i++) {
-            Bullet bullet=bts[i];
-            for (int j = 0; j < planes.length; j++) {
-                FlyingObject plane=planes[j];
-                if(plane.duang(bullet)){
-                    System.out.println("子弹"+i+"打到飞机"+j);
+    public void hitDetection() {
+        for (Bullet bt : bts) {
+            if (!bt.isLiving()) {
+                continue;
+            }
+            for (FlyingObject plane : planes) {
+                if (!plane.isLiving()) {
+                    continue;
+                }
+                if (plane.duang(bt)) {
+                    bt.goDead();
+                    plane.hit();
                 }
             }
         }

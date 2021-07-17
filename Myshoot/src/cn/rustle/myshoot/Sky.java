@@ -1,6 +1,5 @@
 package cn.rustle.myshoot;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
