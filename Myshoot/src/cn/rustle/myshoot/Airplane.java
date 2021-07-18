@@ -1,7 +1,5 @@
 package cn.rustle.myshoot;
 
-import javax.swing.ImageIcon;
-import java.util.Random;
 
 /** 小敌机
  * @author Administrator*/

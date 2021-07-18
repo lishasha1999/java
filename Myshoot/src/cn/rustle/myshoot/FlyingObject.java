@@ -2,7 +2,6 @@ package cn.rustle.myshoot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.security.PublicKey;
 import java.util.Arrays;
 
 /**
@@ -24,7 +23,7 @@ public abstract class FlyingObject {
      * 设置飞行物的生命值
      */
     protected int life = 1;
-    private int i=0;
+    private int i = 0;
     protected double width, height, x, y, step;
     protected ImageIcon image;
     protected ImageIcon[] images;
@@ -57,7 +56,7 @@ public abstract class FlyingObject {
      * 定义一个变量用于控制爆炸图片
      */
     public void nextImage() {
-        switch (state){
+        switch (state) {
             case LIVING:
                 if (images == null) {
                     return;
@@ -65,15 +64,15 @@ public abstract class FlyingObject {
                 image = images[(index++) / 20 % images.length];
                 break;
             case DEAD:
-                index=i++/30;
-                if(bom==null){
+                index = i++ / 30;
+                if (bom == null) {
                     return;
                 }
-                if(index== bom.length){
-                    state=ZOMBIE;
+                if (index == bom.length) {
+                    state = ZOMBIE;
                     return;
                 }
-                image=bom[index];
+                image = bom[index];
         }
     }
 
@@ -104,11 +103,11 @@ public abstract class FlyingObject {
     /**
      * 打击方法
      */
-    public boolean hit(){
-        if(life>0){
+    public boolean hit() {
+        if (life > 0) {
             life--;
-            if(life==0){
-                state=DEAD;
+            if (life == 0) {
+                state = DEAD;
             }
             return true;
         }
@@ -119,28 +118,44 @@ public abstract class FlyingObject {
      * 英雄机死亡方法
      * @return
      */
-    public boolean goDead(){
-        if (state==LIVING){
-            life=0;
-            state=DEAD;
+    public boolean goDead() {
+        if (state == LIVING) {
+            life = 0;
+            state = DEAD;
             return true;
-        }else{
+        } else {
             return false;
         }
-    };
-
-    public boolean isLiving(){
-        return state==LIVING;
     }
 
-    public boolean isDead(){
-        return state==DEAD;
+    ;
+
+    public boolean isLiving() {
+        return state == LIVING;
     }
 
-    public boolean isZombie(){
-        return state==ZOMBIE;
+    public boolean isDead() {
+        return state == DEAD;
     }
 
+    public boolean isZombie() {
+        return state == ZOMBIE;
+    }
+
+    /**
+     * 判断飞行物及子弹是否出界
+     * @return true：出界 false:未出界
+     */
+    public boolean
+    outOfBounds(){
+        if(y<-height-50){
+            return true;
+        }else if(y>700+50){
+            return true;
+        }else {
+            return false;
+        }
+    }
     @Override
     public String toString() {
         return "FlyingObject{" +

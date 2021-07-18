@@ -1,5 +1,5 @@
 package cn.rustle.myshoot;
-import javax.swing.ImageIcon;
+
 /** 子弹
  * @author Administrator*/
 public class Bullet extends FlyingObject {

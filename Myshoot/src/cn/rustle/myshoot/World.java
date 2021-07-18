@@ -72,18 +72,26 @@ public class World extends JPanel {
             fireAction();
             creatPlane();
             s.move(); //天空动
-            for (FlyingObject plane : planes) {
-                if (plane.isLiving()) {
-                    plane.move();
-                }
-            }
-            for (Bullet bt : bts) { //遍历所有子弹
-                if (bt.isLiving()) {
-                    bt.move(); //子弹动
-                }
-            }
+            objectMove();
             hitDetection();
+            clean();
             repaint(); //重新调用paint()方法
+        }
+    }
+
+    /**
+     * 飞行物和子弹移动
+     */
+    public void objectMove() {
+        for (FlyingObject plane : planes) {
+            if (plane.isLiving()) {
+                plane.move();
+            }
+        }
+        for (Bullet bt : bts) {
+            if (bt.isLiving()) {
+                bt.move();
+            }
         }
     }
 
@@ -127,6 +135,9 @@ public class World extends JPanel {
         }
     }
 
+    /**
+     * 绘制子弹
+     */
     public void fireAction() {
         if (index % 15 == 0) {
             bts = Arrays.copyOf(bts, bts.length + 1);
@@ -154,6 +165,30 @@ public class World extends JPanel {
         }
     }
 
+    /**
+     * 清理掉被打掉和飞出范围的飞机和子弹
+     */
+    public void clean() {
+        FlyingObject[] living = new FlyingObject[planes.length];
+        int index = 0;
+        for (FlyingObject plane : planes) {
+            if (plane.isZombie()||plane.outOfBounds()) {
+                continue;
+            }
+            living[index++] = plane;
+        }
+        planes = Arrays.copyOf(living, index);
+
+        Bullet[] arr = new Bullet[bts.length];
+        index = 0;
+        for (Bullet bt : bts) {
+            if (bt.isDead()||bt.outOfBounds()) {
+                continue;
+            }
+            arr[index++] = bt;
+        }
+        bts = Arrays.copyOf(arr, index);
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
