@@ -15,6 +15,11 @@ import java.util.TimerTask;
  * @author Administrator
  */
 public class World extends JPanel {
+    public static final int READY = 0;
+    public static final int RUNNING = 1;
+    public static final int PAUSE = 2;
+    public static final int GAME_OVER = 3;
+    private int state = READY;
     /**
      * 如下为窗口中所显示的对象
      */
@@ -23,8 +28,8 @@ public class World extends JPanel {
     private Bullet[] bts;
     private FlyingObject[] planes;
     private int index = 0;
-    private int score=0;
-    private int life=1;
+    private int score = 0;
+    private int life = 3;
 
     /**
      * 构造方法
@@ -32,13 +37,7 @@ public class World extends JPanel {
     public World() {
         s = new Sky();
         h = new Hero(150, 400);
-        planes = new FlyingObject[6];
-        planes[0] = new Airplane();
-        planes[1] = new Airplane();
-        planes[2] = new Bigplane();
-        planes[3] = new Bigplane();
-        planes[4] = new Bee();
-        planes[5] = new Bee();
+        planes = new FlyingObject[0];
         bts = new Bullet[0];
 
     }
@@ -57,9 +56,45 @@ public class World extends JPanel {
         this.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                int x = e.getX();
-                int y = e.getY();
-                h.move(x, y);
+                if (state == RUNNING) {
+                    int x = e.getX();
+                    int y = e.getY();
+                    h.move(x, y);
+                }
+            }
+        });
+        this.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (state == READY) {
+                    state = RUNNING;
+                }else if (state==GAME_OVER){
+                    score=0;
+                    life=3;
+                    planes=new FlyingObject[0];
+                    bts=new Bullet[0];
+                    h=new Hero(140,388);
+                    state=READY;
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (state == PAUSE) {
+                    state = RUNNING;
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (state == RUNNING) {
+                    state = PAUSE;
+                }
             }
         });
     }
@@ -71,12 +106,15 @@ public class World extends JPanel {
         @Override
         public void run() { //定时干的事(每10毫秒自动执行)
             index++;
-            fireAction();
-            creatPlane();
+            if (state == RUNNING) {
+                fireAction();
+                creatPlane();
+                objectMove();
+                hitDetection();
+                runAway();
+                clean();
+            }
             s.move(); //天空动
-            objectMove();
-            hitDetection();
-            clean();
             repaint(); //重新调用paint()方法
         }
     }
@@ -111,9 +149,18 @@ public class World extends JPanel {
             bt.paintObject(g);
         }
         g.setColor(Color.white);
-        g.setFont(new Font("宋体",Font.BOLD,20));
-        g.drawString("Score:"+score,20,40);
-        g.drawString("Life:"+life,20,60);
+        g.setFont(new Font("宋体", Font.BOLD, 20));
+        g.drawString("Score:" + score, 20, 40);
+        g.drawString("Life:" + life, 20, 60);
+        if (state == READY) {
+            Images.start.paintIcon(this, g, 0, 0);
+        }
+        if (state == PAUSE) {
+            Images.pause.paintIcon(this, g, 0, 0);
+        }
+        if (state == GAME_OVER) {
+            Images.gameover.paintIcon(this, g, 0, 0);
+        }
     }
 
     /**
@@ -144,12 +191,15 @@ public class World extends JPanel {
      * 绘制子弹
      */
     public void fireAction() {
+        if(!h.isLiving()){
+            return;
+        }
         if (index % 15 == 0) {
-            Bullet[] double_bullet=h.openFire();
-            int len=bts.length;
+            Bullet[] double_bullet = h.openFire();
+            int len = bts.length;
             Bullet[] arr = Arrays.copyOf(bts, len + double_bullet.length);
-            System.arraycopy(double_bullet,0,arr,len,double_bullet.length);
-            bts=arr;
+            System.arraycopy(double_bullet, 0, arr, len, double_bullet.length);
+            bts = arr;
         }
     }
 
@@ -181,7 +231,7 @@ public class World extends JPanel {
         FlyingObject[] living = new FlyingObject[planes.length];
         int index = 0;
         for (FlyingObject plane : planes) {
-            if (plane.isZombie()||plane.outOfBounds()) {
+            if (plane.isZombie() || plane.outOfBounds()) {
                 continue;
             }
             living[index++] = plane;
@@ -191,7 +241,7 @@ public class World extends JPanel {
         Bullet[] arr = new Bullet[bts.length];
         index = 0;
         for (Bullet bt : bts) {
-            if (bt.isDead()||bt.outOfBounds()) {
+            if (bt.isDead() || bt.outOfBounds()) {
                 continue;
             }
             arr[index++] = bt;
@@ -202,22 +252,47 @@ public class World extends JPanel {
     /**
      * 封装计分方法
      */
-    public void score(FlyingObject plane){
-        if(plane.isDead()){
-            if(plane instanceof Airplane){
-                Enemy enemy=(Enemy) plane;
-                score+=enemy.getSorce();
-            }else if(plane instanceof Bigplane){
-                Enemy enemy=(Enemy) plane;
-                score+=enemy.getSorce();
-            }else if(plane instanceof Bee){
-                Award award=(Award) plane;
-                int type=award.getAward();
-                if(type==Award.DOUBLE_FIRE){
+    public void score(FlyingObject plane) {
+        if (plane.isDead()) {
+            if (plane instanceof Airplane) {
+                Enemy enemy = (Enemy) plane;
+                score += enemy.getSorce();
+            } else if (plane instanceof Bigplane) {
+                Enemy enemy = (Enemy) plane;
+                score += enemy.getSorce();
+            } else if (plane instanceof Bee) {
+                Award award = (Award) plane;
+                int type = award.getAward();
+                if (type == Award.DOUBLE_FIRE) {
                     h.doubleFire();
-                }else if(type==2){
+                } else if (type == 2) {
                     life++;
                 }
+            }
+        }
+    }
+
+    public void runAway() {
+        if (h.isLiving()) {
+            for (FlyingObject plane : planes) {
+                if (!plane.isLiving()) {
+                    continue;
+                }
+                if (h.duang(plane)) {
+                    h.goDead();
+                    plane.goDead();
+                    break;
+                }
+            }
+        }else if(h.isZombie()){
+            if(life>0) {
+                h = new Hero(138, 380);
+                for (FlyingObject plane : planes) {
+                    plane.goDead();
+                }
+                life--;
+            }else{
+                state=GAME_OVER;
             }
         }
     }
