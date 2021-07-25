@@ -3,7 +3,7 @@ package cn.rustle.myshoot;
 
 /** 小敌机
  * @author Administrator*/
-public class Airplane extends Plane {
+public class Airplane extends Plane implements Enemy{
 
 
     public Airplane(){
@@ -23,6 +23,10 @@ public class Airplane extends Plane {
         //y+(向下)
     }
 
+    @Override
+    public int getSorce() {
+        return 10;
+    }
 }
 
 

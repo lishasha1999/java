@@ -23,6 +23,8 @@ public class World extends JPanel {
     private Bullet[] bts;
     private FlyingObject[] planes;
     private int index = 0;
+    private int score=0;
+    private int life=1;
 
     /**
      * 构造方法
@@ -105,10 +107,13 @@ public class World extends JPanel {
         for (FlyingObject plane : planes) {
             plane.paintObject(g);
         }
-
         for (Bullet bt : bts) {
             bt.paintObject(g);
         }
+        g.setColor(Color.white);
+        g.setFont(new Font("宋体",Font.BOLD,20));
+        g.drawString("Score:"+score,20,40);
+        g.drawString("Life:"+life,20,60);
     }
 
     /**
@@ -140,8 +145,11 @@ public class World extends JPanel {
      */
     public void fireAction() {
         if (index % 15 == 0) {
-            bts = Arrays.copyOf(bts, bts.length + 1);
-            bts[bts.length - 1] = h.fire();
+            Bullet[] double_bullet=h.openFire();
+            int len=bts.length;
+            Bullet[] arr = Arrays.copyOf(bts, len + double_bullet.length);
+            System.arraycopy(double_bullet,0,arr,len,double_bullet.length);
+            bts=arr;
         }
     }
 
@@ -160,6 +168,7 @@ public class World extends JPanel {
                 if (plane.duang(bt)) {
                     bt.goDead();
                     plane.hit();
+                    score(plane);
                 }
             }
         }
@@ -188,6 +197,29 @@ public class World extends JPanel {
             arr[index++] = bt;
         }
         bts = Arrays.copyOf(arr, index);
+    }
+
+    /**
+     * 封装计分方法
+     */
+    public void score(FlyingObject plane){
+        if(plane.isDead()){
+            if(plane instanceof Airplane){
+                Enemy enemy=(Enemy) plane;
+                score+=enemy.getSorce();
+            }else if(plane instanceof Bigplane){
+                Enemy enemy=(Enemy) plane;
+                score+=enemy.getSorce();
+            }else if(plane instanceof Bee){
+                Award award=(Award) plane;
+                int type=award.getAward();
+                if(type==Award.DOUBLE_FIRE){
+                    h.doubleFire();
+                }else if(type==2){
+                    life++;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

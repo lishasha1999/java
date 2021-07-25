@@ -146,8 +146,7 @@ public abstract class FlyingObject {
      * 判断飞行物及子弹是否出界
      * @return true：出界 false:未出界
      */
-    public boolean
-    outOfBounds(){
+    public boolean outOfBounds(){
         if(y<-height-50){
             return true;
         }else if(y>700+50){

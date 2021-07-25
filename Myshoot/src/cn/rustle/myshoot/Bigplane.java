@@ -2,7 +2,7 @@ package cn.rustle.myshoot;
 
 /** 大敌机
  * @author Administrator*/
-public class Bigplane extends Plane {
+public class Bigplane extends Plane implements Enemy{
 
     public Bigplane(){
         super(Images.bigplane[0],Images.bigplane,Images.bom);
@@ -20,6 +20,11 @@ public class Bigplane extends Plane {
     @Override
     public void move(){
         y+=step;
+    }
+
+    @Override
+    public int getSorce() {
+        return 20;
     }
 }
 
