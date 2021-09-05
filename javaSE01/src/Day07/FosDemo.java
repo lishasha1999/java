@@ -12,10 +12,10 @@ import java.io.IOException;
 public class FosDemo {
     public static void main(String[] args) throws IOException {
         FileOutputStream fos=new FileOutputStream("fos.txt",true);
-        String str="不是吧，不是吧，......";
+        String str="涓嶆槸鍚э紝涓嶆槸鍚э紝......";
         byte[] data=str.getBytes("utf-8");
         fos.write(data);
-        System.out.println("写出完毕");
+        System.out.println("鍐欏嚭瀹屾瘯");
         fos.close();
     }
 }
